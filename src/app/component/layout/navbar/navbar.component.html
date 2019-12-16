@@ -8,7 +8,7 @@
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [(ngModel)]="account">
+        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Category
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -19,7 +19,7 @@
       </li>
 
       <li class="nav-item dropdown" *ngIf="userService.userOnline===''">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [(ngModel)]="account">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Tài Khoản
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,7 +30,7 @@
         </div>
       </li>
       <li class="nav-item dropdown" *ngIf="userService.userOnline!==''">
-        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [(ngModel)]="account">
+        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{userService.userOnline}}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
