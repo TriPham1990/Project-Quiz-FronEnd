@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {StatusUser} from '../interface/statusUser';
 import {User} from '../interface/user';
 import {Observable} from 'rxjs';
 import {Login} from '../interface/login';
@@ -13,7 +12,6 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  statusUser: StatusUser = {userName: null, role: [null], jwtToken: null, avatarLink: null};
 
   userOnline = '';
 
