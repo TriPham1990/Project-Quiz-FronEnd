@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {Category} from '../../../interface/category';
+import {Category} from '../../../../interface/category';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CategoryService} from '../../../services/category.service';
+import {CategoryService} from '../../../../services/category.service';
 
 @Component({
   selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  templateUrl: './create-category.component.html',
+  styleUrls: ['./create-category.component.css']
 })
-export class CategoryComponent implements OnInit {
+export class CreateCategoryComponent implements OnInit {
   category: Category;
   createCategoryForm: FormGroup;
   isSuccess: boolean;

@@ -12,9 +12,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {JwtInterceptor} from './interceptor/JwtInterceptor';
-import { CategoryComponent } from './component/quiz/category/category.component';
+import { CreateCategoryComponent } from './component/quiz/category/create-category/create-category.component';
 import { HomeComponent } from './component/layout/home/home.component';
-import {ListCategoryComponent} from './component/quiz/list-category/list-category.component';
+import {ListCategoryComponent} from './component/quiz/category/list-category/list-category.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import {ListCategoryComponent} from './component/quiz/list-category/list-categor
     FooterComponent,
     LoginUserComponent,
     CreateUserComponent,
-    CategoryComponent,
+    CreateCategoryComponent,
     HomeComponent,
     ListCategoryComponent
   ],
