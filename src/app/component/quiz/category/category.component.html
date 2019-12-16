@@ -1,3 +1,33 @@
-<div class="container">
+<div class="bg_base_lr">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3" style="max-width:350px;"></div>
+      <div class="col-sm-6" style="">
+        <form name="form" [formGroup]="createCategoryForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            Category
+            <input type="text" class="form-control" formControlName="name" placeholder="Họ và tên"/>
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="createCategoryForm.get('category').invalid && createCategoryForm.get('category').touched">
+              Danh mục không thể để trống
+            </div>
+          </div>
 
+          <div class="alert alert-success" role="alert" *ngIf="check === true">
+            Thêm danh mục thành công
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="check === false">
+            Điền thông tin chưa đúng hoặc danh mục đã tồn tại
+          </div>
+
+          <div class="form-group">
+            <div>
+            </div>
+            <button class="btn btn-primary" type="submit">Đăng ký</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-3" style="max-width:350px;"></div>
+    </div>
+  </div>
 </div>

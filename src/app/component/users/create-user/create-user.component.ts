@@ -37,7 +37,7 @@ export class CreateUserComponent implements OnInit {
 
   onSubmit() {
     if (this.createUserForm.valid) {
-      this.TransferFormDataToUser();
+      this.transferFormDataToUser();
       this.userService.createUSer(this.user).subscribe(
         result => {
           this.login = {username: this.createUserForm.get('username').value, password: this.createUserForm.get('password').value};
@@ -52,7 +52,7 @@ export class CreateUserComponent implements OnInit {
     }
   }
 
-  TransferFormDataToUser() {
+  transferFormDataToUser() {
     this.user = {
       name: this.createUserForm.get('name').value,
       username: this.createUserForm.get('username').value,

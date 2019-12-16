@@ -13,6 +13,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {JwtInterceptor} from './interceptor/JwtInterceptor';
 import { CategoryComponent } from './component/quiz/category/category.component';
+import { HomeComponent } from './component/layout/home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CategoryComponent } from './component/quiz/category/category.component'
     FooterComponent,
     LoginUserComponent,
     CreateUserComponent,
-    CategoryComponent
+    CategoryComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

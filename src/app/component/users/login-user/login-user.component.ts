@@ -32,7 +32,7 @@ export class LoginUserComponent implements OnInit {
         this.isShow = true;
         this.isSuccess = true;
         localStorage.setItem('userOnline', this.loginForm.get('username').value);
-        this.router.navigate(['login']);
+        this.router.navigate(['home']);
       }, error => {
         this.isShow = true;
         this.isSuccess = false;
