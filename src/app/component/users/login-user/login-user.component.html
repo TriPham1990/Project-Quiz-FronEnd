@@ -1,0 +1,33 @@
+<div id="logreg-forms" >
+  <br>
+  <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Đăng nhập</h1>
+  <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="form-group">
+      <input type="text" class="form-control" name="username" formControlName="username"
+             placeholder="Tên username" required />
+      <div class="alert alert-danger" role="alert"
+           *ngIf="loginForm.get('username').invalid && loginForm.get('username').touched">
+        Username phải có ít nhất 6 kí tự!
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" formControlName="password"
+             placeholder="Mật khẩu" required minlength="6" />
+      <div class="alert alert-danger" role="alert"
+           *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+        Mật khẩu gồm 6 ký tự và tối đa 16 ký tự
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Đăng nhập</button>
+      <div class="message" *ngIf="isShow">
+        <div class="alert alert-success" role="alert" *ngIf="isSuccess">
+          Đăng nhập thành công!
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="!isSuccess">
+          Đăng nhập thất bại
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
