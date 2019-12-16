@@ -14,6 +14,7 @@ import {RouterModule} from '@angular/router';
 import {JwtInterceptor} from './interceptor/JwtInterceptor';
 import { CategoryComponent } from './component/quiz/category/category.component';
 import { HomeComponent } from './component/layout/home/home.component';
+import {ListCategoryComponent} from './component/quiz/list-category/list-category.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HomeComponent } from './component/layout/home/home.component';
     CreateUserComponent,
     CategoryComponent,
     HomeComponent,
+    ListCategoryComponent
   ],
   imports: [
     BrowserModule,
