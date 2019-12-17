@@ -1,5 +1,5 @@
 export interface KindOfQuestion {
-  id: number;
-  name: string;
-  classify: string;
+  id?: number;
+  name?: string;
+  classify?: string;
 }

@@ -3,9 +3,9 @@ import {KindOfQuestion} from './kindOfQuestion';
 import {Category} from './category';
 
 export interface Question {
-  id: number;
-  name: string;
+  id?: number;
+  content?: string;
   answers?: Answer[];
   kindOfQuestion?: KindOfQuestion;
-  category: Category;
+  category?: Category;
 }

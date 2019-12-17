@@ -1,2 +1,71 @@
-<p>create-question works!</p>
-Thêm cai gi
+<div class="bg_base_lr" style="padding-top: 30px">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2" style="max-width:350px;"></div>
+      <div class="col-sm-8" style="">
+        <form name="form" [formGroup]="createQuestionForm" (ngSubmit)="createQuestion()">
+          <div class="form-group">
+            <h3 style="text-align: center">Tạo câu hỏi</h3>
+            <div class="alert alert-danger" role="alert" *ngIf="failMessage">
+              <p>{{failMessage}}</p>
+            </div>
+            <h6>Danh mục câu hỏi :</h6>
+            <select class="custom-select custom-select-sm" formControlName="category">
+              <option *ngFor="let category of categories"
+                      [value]="category.id">{{category.name}}</option>
+            </select>
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="createQuestionForm.get('category').invalid && createQuestionForm.get('category').touched">
+              Danh mục không thể để trống.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <h6>Loại câu hỏi :</h6>
+            <select class="custom-select custom-select-sm" formControlName="kindOfQuestion" (click)="kindOfQuestionForm($event.target.value)">
+              <option *ngFor="let kindOfQuestion of kindOfQuestions"
+                      [value]="kindOfQuestion.id">{{kindOfQuestion.name}}</option>
+            </select>
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="createQuestionForm.get('kindOfQuestion').invalid && createQuestionForm.get('kindOfQuestion').touched">
+              Loại câu hỏi không thể để trống.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <h6>Câu hỏi :</h6>
+            <textarea type="text" class="form-control" formControlName="content"
+                      placeholder="Enter the question"></textarea>
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="createQuestionForm.get('content').invalid && createQuestionForm.get('content').touched">
+              Câu hỏi không thể để trống.
+            </div>
+          </div>
+        </form>
+
+        <form name="form" [formGroup]="createAnswerForm" (ngSubmit)="createAnswer()" *ngIf="isChoseKindOfQuestion">
+          <div class="form-group">
+            <h6>Câu trả lời :</h6>
+            <div class="input-group flex-nowrap">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="addon-wrapping">
+                  <input type="radio" formControlName="correct" name="correct" value="true">
+                </span>
+              </div>
+              <input type="text" class="form-control" placeholder="Nhập câu trả lời" formControlName="content"
+                     aria-label="name" aria-describedby="addon-wrapping">
+              <button>
+                <i class="fa fa-plus fa-lg"></i>
+              </button>
+            </div>
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="createAnswerForm.get('content').invalid && createAnswerForm.get('content').touched">
+              Câu trả lời không thể để trống
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-2" style="max-width:350px;"></div>
+    </div>
+  </div>
+</div>

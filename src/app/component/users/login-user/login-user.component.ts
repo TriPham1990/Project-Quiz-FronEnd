@@ -28,7 +28,7 @@ export class LoginUserComponent implements OnInit {
     if (this.loginForm.valid) {
       this.userService.userLogin(this.loginForm.value).subscribe( result => {
         console.log(result);
-        localStorage.setItem('ACCESS_TOKEN', result.accessToken);
+        localStorage.setItem('ACCESS_TOKEN', result.token);
         this.isShow = true;
         this.isSuccess = true;
         localStorage.setItem('userOnline', this.loginForm.get('username').value);

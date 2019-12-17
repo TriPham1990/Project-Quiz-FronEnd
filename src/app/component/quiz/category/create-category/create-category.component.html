@@ -5,8 +5,8 @@
       <div class="col-sm-6" style="">
         <form name="form" [formGroup]="createCategoryForm" (ngSubmit)="createCategory()">
           <div class="form-group">
-            <h3 style="text-align: center">Category</h3>
-            <input type="text" class="form-control" formControlName="name" placeholder="Enter the category"/>
+            <h3 style="text-align: center">Tạo Mới Danh Mục</h3>
+            <input type="text" class="form-control" formControlName="name" placeholder="Nhập tên danh mục mới"/>
             <div class="alert alert-danger" role="alert"
                  *ngIf="createCategoryForm.get('name').invalid && createCategoryForm.get('name').touched">
               Danh mục không thể để trống
@@ -23,7 +23,7 @@
           <div class="form-group" style="text-align: center">
             <div>
             </div>
-            <button class="btn btn-primary" type="submit">Đăng ký</button>
+            <button class="btn btn-primary" type="submit">Tạo mới</button>
           </div>
         </form>
       </div>
