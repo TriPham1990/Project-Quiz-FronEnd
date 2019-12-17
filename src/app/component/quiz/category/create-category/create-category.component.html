@@ -6,9 +6,9 @@
         <form name="form" [formGroup]="createCategoryForm" (ngSubmit)="createCategory()">
           <div class="form-group">
             <h3 style="text-align: center">Category</h3>
-            <input type="text" class="form-control" formControlName="category" placeholder="Enter the category"/>
+            <input type="text" class="form-control" formControlName="name" placeholder="Enter the category"/>
             <div class="alert alert-danger" role="alert"
-                 *ngIf="createCategoryForm.get('category').invalid && createCategoryForm.get('category').touched">
+                 *ngIf="createCategoryForm.get('name').invalid && createCategoryForm.get('name').touched">
               Danh mục không thể để trống
             </div>
           </div>

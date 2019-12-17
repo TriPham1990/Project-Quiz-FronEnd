@@ -5,6 +5,8 @@ import {LoginUserComponent} from './component/users/login-user/login-user.compon
 import {CreateCategoryComponent} from './component/quiz/category/create-category/create-category.component';
 import {HomeComponent} from './component/layout/home/home.component';
 import {ListCategoryComponent} from './component/quiz/category/list-category/list-category.component';
+import {CreateQuestionComponent} from './component/quiz/question/create-question/create-question.component';
+import {ListQuestionComponent} from './component/quiz/question/list-question/list-question.component';
 
 
 const routes: Routes = [
@@ -12,7 +14,9 @@ const routes: Routes = [
   {path: 'login', component: LoginUserComponent},
   {path: 'create-category', component: CreateCategoryComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'list-category', component: ListCategoryComponent}
+  {path: 'list-category', component: ListCategoryComponent},
+  {path: 'create-question', component: CreateQuestionComponent},
+  {path: 'list-question', component: ListQuestionComponent}
 ];
 
 @NgModule({

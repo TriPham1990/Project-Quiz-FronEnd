@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Category} from '../../../../interface/category';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CategoryService} from '../../../../services/category.service';
+import {CategoryService} from '../../../../services/category/category.service';
 
 @Component({
   selector: 'app-category',
@@ -18,7 +18,7 @@ export class CreateCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.createCategoryForm = this.fb.group({
-      category: [null, Validators.required]
+      name: [null, Validators.required]
     });
   }
 

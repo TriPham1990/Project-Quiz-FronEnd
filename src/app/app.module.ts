@@ -15,6 +15,8 @@ import {JwtInterceptor} from './interceptor/JwtInterceptor';
 import { CreateCategoryComponent } from './component/quiz/category/create-category/create-category.component';
 import { HomeComponent } from './component/layout/home/home.component';
 import {ListCategoryComponent} from './component/quiz/category/list-category/list-category.component';
+import { CreateQuestionComponent } from './component/quiz/question/create-question/create-question.component';
+import { ListQuestionComponent } from './component/quiz/question/list-question/list-question.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {ListCategoryComponent} from './component/quiz/category/list-category/lis
     CreateUserComponent,
     CreateCategoryComponent,
     HomeComponent,
-    ListCategoryComponent
+    ListCategoryComponent,
+    CreateQuestionComponent,
+    ListQuestionComponent
   ],
   imports: [
     BrowserModule,
