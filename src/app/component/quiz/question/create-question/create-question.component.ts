@@ -20,7 +20,7 @@ export class CreateQuestionComponent implements OnInit {
   createAnswerForm: FormGroup;
   kindOfQuestions: KindOfQuestion[];
   categories: Category[];
-  questions: Question[];
+  questions: Question[] = [];
   failMessage: string;
   isCreateQuestionSuccess: boolean;
   isChoseKindOfQuestion: boolean;
@@ -40,7 +40,7 @@ export class CreateQuestionComponent implements OnInit {
     });
 
     this.createAnswerForm = this.fb.group({
-      correct: [null, Validators.required],
+      correct: [false, Validators.required],
       content: [null, Validators.required]
     });
 
@@ -48,7 +48,6 @@ export class CreateQuestionComponent implements OnInit {
     this.getListKindOfQuestion();
     this.getListQuestion();
 
-    this.idQuestionCurrent = this.questions.length + 1;
   }
 
   getListQuestion() {
@@ -85,8 +84,11 @@ export class CreateQuestionComponent implements OnInit {
       content: this.createQuestionForm.get('content').value
     };
 
-    this.questionService.createQuestion(question).subscribe(() => {
+    this.questionService.createQuestion(question).subscribe(result => {
+      console.log(result);
       this.isCreateQuestionSuccess = true;
+      console.log('succsess');
+      this.idQuestionCurrent = result.id;
     }, () => {
       this.failMessage = 'Thêm câu hỏi thất bại';
     });
@@ -94,6 +96,7 @@ export class CreateQuestionComponent implements OnInit {
 
   createAnswer() {
     this.createQuestion();
+    console.log(this.isCreateQuestionSuccess);
     if (this.isCreateQuestionSuccess) {
       const answer: Answer = {
         correct: this.createAnswerForm.get('correct').value,
@@ -102,6 +105,7 @@ export class CreateQuestionComponent implements OnInit {
           id: this.idQuestionCurrent
         }
       };
+
       this.answerService.createAnswer(answer).subscribe(() => {
         this.answers.push(answer);
         this.createAnswerForm.reset();
