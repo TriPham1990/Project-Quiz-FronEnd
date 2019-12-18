@@ -65,11 +65,11 @@
               </div>
 
               <div class="radio">
-                <label><input type="radio" formControlName="correct" name="correct" value="{{true}}"> Câu trả lời
+                <label><input [attr.disabled]="[(isHadCorrectAnswer)? true : false]" type="radio" formControlName="correct" name="correct" value="{{true}}"> Câu trả lời
                   đúng</label>
               </div>
               <div class="radio">
-                <label><input type="radio" formControlName="correct" name="correct" value="{{false}}"> Câu trả lời
+                <label><input [attr.disabled]="[(isHadCorrectAnswer)? true : false]" type="radio" formControlName="correct" name="correct" value="{{false}}"> Câu trả lời
                   sai</label>
               </div>
 

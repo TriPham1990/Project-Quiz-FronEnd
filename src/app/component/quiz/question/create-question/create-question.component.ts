@@ -26,6 +26,7 @@ export class CreateQuestionComponent implements OnInit {
   isChoseKindOfQuestion: boolean;
   choseClassifyQuestion: boolean;
   idQuestionCurrent: number;
+  isHadCorrectAnswer: boolean;
   answers: Answer[] = [];
   answer: Answer;
 
@@ -51,7 +52,6 @@ export class CreateQuestionComponent implements OnInit {
     this.getListQuestion();
 
     this.isCreateQuestionSuccess = false;
-
   }
 
   getListQuestion() {
@@ -84,7 +84,6 @@ export class CreateQuestionComponent implements OnInit {
   createQuestion() {
     if (!this.isCreateQuestionSuccess) {
       this.addQuestion();
-      this.addAnswer();
     } else {
       this.addAnswer();
     }
@@ -101,6 +100,7 @@ export class CreateQuestionComponent implements OnInit {
     this.questionService.createQuestion(question).subscribe(result => {
       this.isCreateQuestionSuccess = true;
       this.idQuestionCurrent = result.id;
+      this.addAnswer();
     }, () => {
       this.failMessage = 'Thêm câu hỏi thất bại';
     });
@@ -119,6 +119,9 @@ export class CreateQuestionComponent implements OnInit {
       this.answerService.createAnswer(answer).subscribe(result => {
         this.answer = result;
         this.answers.push(answer);
+        if (answer.correct === true) {
+          this.isHadCorrectAnswer = true;
+        }
         this.createAnswerForm.reset();
       }, () => {
         this.failMessage = 'Thêm câu trả lời thất bại';
