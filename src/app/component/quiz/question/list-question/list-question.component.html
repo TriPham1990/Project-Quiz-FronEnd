@@ -1,2 +1,19 @@
-<p>list-question works!</p>
-Tri dai ca
+<div class="container-fluid">
+  <div class="row col-md-12 col-md-offset-2 custyle text-center">
+    <table class="table table-striped custab">
+      <thead>
+      <tr>
+        <th>Câu Hỏi</th>
+        <th class="text-center">Sửa / Xóa</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let question of questions">
+        <td>{{question.content}}</td>
+        <td class="text-center">
+          <a class="btn btn-light"><em class="fa fa-pencil"></em></a>
+          <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

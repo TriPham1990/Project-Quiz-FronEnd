@@ -30,11 +30,12 @@ export class CreateQuestionComponent implements OnInit {
   idQuestionCurrent: number;
   answers: Answer[] = [];
   answer: Answer;
+  updateStatus = false;
 
 
   constructor(private fb: FormBuilder, private questionService: QuestionService,
               private categoryService: CategoryService, private kindOfQuestionService: KindOfQuestionService,
-              private answerService: AnswerService, private router: Router) {
+              private answerService: AnswerService) {
   }
 
   ngOnInit() {
@@ -127,6 +128,7 @@ export class CreateQuestionComponent implements OnInit {
         if (this.answer.correct === true && this.choseClassifyQuestion === true) {
           this.isChoseCorrectAnswer = true;
         }
+        this.updateStatus = true;
 
         this.createAnswerForm.reset();
       }, () => {
@@ -143,10 +145,6 @@ export class CreateQuestionComponent implements OnInit {
       this.choseClassifyQuestion = false;
     }
     this.isChoseKindOfQuestion = true;
-  }
-
-  createNewQuestion() {
-    this.router.navigate(['home']);
   }
 
 }
