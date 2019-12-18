@@ -27,6 +27,7 @@ export class CreateCategoryComponent implements OnInit {
       const category = this.createCategoryForm.value;
       this.categoryService.createCategory(category).subscribe(result => {
         this.isSuccess = true;
+        this.createCategoryForm.reset();
       }, error => {
         this.isSuccess = false;
       });

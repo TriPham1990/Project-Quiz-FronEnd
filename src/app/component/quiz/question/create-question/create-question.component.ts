@@ -24,8 +24,10 @@ export class CreateQuestionComponent implements OnInit {
   failMessage: string;
   isCreateQuestionSuccess: boolean;
   isChoseKindOfQuestion: boolean;
+  choseClassifyQuestion: boolean;
   idQuestionCurrent: number;
   answers: Answer[] = [];
+  answer: Answer;
 
   constructor(private fb: FormBuilder, private questionService: QuestionService,
               private categoryService: CategoryService, private kindOfQuestionService: KindOfQuestionService,
@@ -40,13 +42,15 @@ export class CreateQuestionComponent implements OnInit {
     });
 
     this.createAnswerForm = this.fb.group({
-      correct: [false, Validators.required],
+      correct: [null, Validators.required],
       content: [null, Validators.required]
     });
 
     this.getListCategory();
     this.getListKindOfQuestion();
     this.getListQuestion();
+
+    this.isCreateQuestionSuccess = false;
 
   }
 
@@ -78,6 +82,16 @@ export class CreateQuestionComponent implements OnInit {
   }
 
   createQuestion() {
+    if (!this.isCreateQuestionSuccess) {
+      this.addQuestion();
+      this.addAnswer();
+    } else {
+      this.addAnswer();
+    }
+  }
+
+
+  addQuestion() {
     const question: Question = {
       category: {id: this.createQuestionForm.get('category').value},
       kindOfQuestion: {id: this.createQuestionForm.get('kindOfQuestion').value},
@@ -85,18 +99,14 @@ export class CreateQuestionComponent implements OnInit {
     };
 
     this.questionService.createQuestion(question).subscribe(result => {
-      console.log(result);
       this.isCreateQuestionSuccess = true;
-      console.log('succsess');
       this.idQuestionCurrent = result.id;
     }, () => {
       this.failMessage = 'Thêm câu hỏi thất bại';
     });
   }
 
-  createAnswer() {
-    this.createQuestion();
-    console.log(this.isCreateQuestionSuccess);
+  addAnswer() {
     if (this.isCreateQuestionSuccess) {
       const answer: Answer = {
         correct: this.createAnswerForm.get('correct').value,
@@ -106,7 +116,8 @@ export class CreateQuestionComponent implements OnInit {
         }
       };
 
-      this.answerService.createAnswer(answer).subscribe(() => {
+      this.answerService.createAnswer(answer).subscribe(result => {
+        this.answer = result;
         this.answers.push(answer);
         this.createAnswerForm.reset();
       }, () => {
@@ -115,7 +126,14 @@ export class CreateQuestionComponent implements OnInit {
     }
   }
 
-  kindOfQuestionForm(id: number) {
+  kindOfQuestionForm(id: string) {
+    console.log(id);
+    if (id === '1') {
+      this.choseClassifyQuestion = true;
+    } else {
+      this.choseClassifyQuestion = false;
+    }
+    console.log(this.choseClassifyQuestion);
     this.isChoseKindOfQuestion = true;
   }
 

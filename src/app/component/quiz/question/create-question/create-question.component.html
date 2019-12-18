@@ -22,7 +22,8 @@
 
           <div class="form-group">
             <h6>Loại câu hỏi :</h6>
-            <select class="custom-select custom-select-sm" formControlName="kindOfQuestion" (click)="kindOfQuestionForm($event.target.value)">
+            <select class="custom-select custom-select-sm" formControlName="kindOfQuestion"
+                    (click)="kindOfQuestionForm($event.target.value)">
               <option *ngFor="let kindOfQuestion of kindOfQuestions"
                       [value]="kindOfQuestion.id">{{kindOfQuestion.name}}</option>
             </select>
@@ -43,27 +44,70 @@
           </div>
         </form>
 
-        <form name="form" [formGroup]="createAnswerForm" (ngSubmit)="createAnswer()" *ngIf="isChoseKindOfQuestion">
-          <div class="form-group">
-            <h6>Câu trả lời :</h6>
-            <div class="input-group flex-nowrap">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="addon-wrapping">
-                  <input type="radio" formControlName="correct" name="correct" value="true">
-                </span>
-              </div>
-              <input type="text" class="form-control" placeholder="Nhập câu trả lời" formControlName="content"
-                     aria-label="name" aria-describedby="addon-wrapping">
-              <button>
-                <i class="fa fa-plus fa-lg"></i>
-              </button>
-            </div>
-            <div class="alert alert-danger" role="alert"
-                 *ngIf="createAnswerForm.get('content').invalid && createAnswerForm.get('content').touched">
-              Câu trả lời không thể để trống
-            </div>
+        <h6>Câu trả lời :</h6>
+        <div *ngFor="let answer of answers">
+          <div>
+            <label>
+              <input [type]="[(choseClassifyQuestion)? 'radio' : 'checkbox']" name="correct" value="true">
+            </label>
+            <p>{{answer.content}}</p>
           </div>
-        </form>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <form id="regForm" name="form" [formGroup]="createAnswerForm" (ngSubmit)="createQuestion()">
+              <div class="form-group">
+                <label>
+                      <textarea type="text" class="form-control" placeholder="Nhập vào câu trả lời"
+                                formControlName="content"></textarea>
+                </label>
+              </div>
+
+              <div class="radio">
+                <label><input type="radio" formControlName="correct" name="correct" value="{{true}}"> Câu trả lời
+                  đúng</label>
+              </div>
+              <div class="radio">
+                <label><input type="radio" formControlName="correct" name="correct" value="{{false}}"> Câu trả lời
+                  sai</label>
+              </div>
+
+              <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Tạo câu trả lời">
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+
+
+        <!--        <form name="form" [formGroup]="createAnswerForm" (ngSubmit)="createAnswer()"> //*ngIf="isChoseKindOfQuestion">-->
+        <!--          <div class="form-group">-->
+        <!--            <div class="input-group flex-nowrap">-->
+        <!--              <div class="input-group-prepend">-->
+        <!--                <label class="input-group-text" id="addon-wrapping">-->
+        <!--                  <input [type]="[(choseClassifyQuestion)? 'radio' : 'checkbox']" formControlName="correct"-->
+        <!--                         name="correct" value="{{true}}">-->
+        <!--                </label>-->
+        <!--                <label class="input-group-text" id="addon-wrapping 1">-->
+        <!--                  <input [type]="[(choseClassifyQuestion)? 'radio' : 'checkbox']" formControlName="correct"-->
+        <!--                         name="correct" value="{{true}}">-->
+        <!--                </label>-->
+        <!--              </div>-->
+        <!--              <input type="text" class="form-control" placeholder="Nhập câu trả lời" formControlName="content"-->
+        <!--                     aria-label="name" aria-describedby="addon-wrapping">-->
+        <!--              <button>-->
+        <!--                <i class="fa fa-plus fa-lg"></i>-->
+        <!--              </button>-->
+        <!--            </div>-->
+        <!--            <div class="alert alert-danger" role="alert"-->
+        <!--                 *ngIf="createAnswerForm.get('content').invalid && createAnswerForm.get('content').touched">-->
+        <!--              Câu trả lời không thể để trống-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </form>-->
       </div>
       <div class="col-sm-2" style="max-width:350px;"></div>
     </div>
