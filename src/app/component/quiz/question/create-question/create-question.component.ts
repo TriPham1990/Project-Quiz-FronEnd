@@ -8,6 +8,7 @@ import {CategoryService} from '../../../../services/category/category.service';
 import {KindOfQuestionService} from '../../../../services/kindOfQuestion/kind-of-question.service';
 import {Answer} from '../../../../interface/answer';
 import {AnswerService} from '../../../../services/answer/answer.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-question',
@@ -22,17 +23,18 @@ export class CreateQuestionComponent implements OnInit {
   categories: Category[];
   questions: Question[] = [];
   failMessage: string;
-  isCreateQuestionSuccess: boolean;
-  isChoseKindOfQuestion: boolean;
-  choseClassifyQuestion: boolean;
+  isCreateQuestionSuccess: boolean; // ok
+  isChoseKindOfQuestion: boolean; // ok
+  choseClassifyQuestion: boolean; // ok
+  isChoseCorrectAnswer: boolean;
   idQuestionCurrent: number;
-  isHadCorrectAnswer: boolean;
   answers: Answer[] = [];
   answer: Answer;
 
+
   constructor(private fb: FormBuilder, private questionService: QuestionService,
               private categoryService: CategoryService, private kindOfQuestionService: KindOfQuestionService,
-              private answerService: AnswerService) {
+              private answerService: AnswerService, private router: Router) {
   }
 
   ngOnInit() {
@@ -52,6 +54,8 @@ export class CreateQuestionComponent implements OnInit {
     this.getListQuestion();
 
     this.isCreateQuestionSuccess = false;
+    this.isChoseKindOfQuestion = false;
+    this.isChoseCorrectAnswer = false;
   }
 
   getListQuestion() {
@@ -119,9 +123,11 @@ export class CreateQuestionComponent implements OnInit {
       this.answerService.createAnswer(answer).subscribe(result => {
         this.answer = result;
         this.answers.push(answer);
-        if (answer.correct === true) {
-          this.isHadCorrectAnswer = true;
+
+        if (this.answer.correct === true && this.choseClassifyQuestion === true) {
+          this.isChoseCorrectAnswer = true;
         }
+
         this.createAnswerForm.reset();
       }, () => {
         this.failMessage = 'Thêm câu trả lời thất bại';
@@ -136,8 +142,11 @@ export class CreateQuestionComponent implements OnInit {
     } else {
       this.choseClassifyQuestion = false;
     }
-    console.log(this.choseClassifyQuestion);
     this.isChoseKindOfQuestion = true;
+  }
+
+  createNewQuestion() {
+    this.router.navigate(['home']);
   }
 
 }
