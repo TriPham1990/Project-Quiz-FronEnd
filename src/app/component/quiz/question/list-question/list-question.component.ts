@@ -8,7 +8,7 @@ import {Question} from '../../../../interface/question';
   styleUrls: ['./list-question.component.css']
 })
 export class ListQuestionComponent implements OnInit {
-
+  pageActual = 1;
   questions: Question[];
 
   constructor(private questionService: QuestionService) {

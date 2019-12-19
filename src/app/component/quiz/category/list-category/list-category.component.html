@@ -7,7 +7,7 @@
         <th class="text-center">Sửa / Xóa</th>
       </tr>
       </thead>
-      <tr *ngFor="let category of categories">
+      <tr *ngFor="let category of categories | paginate: {itemsPerPage: 1, currentPage:pageActual};index as i">
         <td>{{category.name}}</td>
         <td class="text-center">
           <a class="btn btn-light"><em class="fa fa-pencil"></em></a>
@@ -15,5 +15,9 @@
         </td>
       </tr>
     </table>
+    <div id="pagination" style="margin: 0 auto">
+      <pagination-controls (pageChange)="pageActual = $event"
+      ></pagination-controls>
+    </div>
   </div>
 </div>

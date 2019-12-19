@@ -17,6 +17,9 @@ import { HomeComponent } from './component/layout/home/home.component';
 import {ListCategoryComponent} from './component/quiz/category/list-category/list-category.component';
 import { CreateQuestionComponent } from './component/quiz/question/create-question/create-question.component';
 import { ListQuestionComponent } from './component/quiz/question/list-question/list-question.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { CreateQuizComponent } from './component/quiz/quiz/create-quiz/create-quiz.component';
+import { ListQuizComponent } from './component/quiz/quiz/list-quiz/list-quiz.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { ListQuestionComponent } from './component/quiz/question/list-question/l
     HomeComponent,
     ListCategoryComponent,
     CreateQuestionComponent,
-    ListQuestionComponent
+    ListQuestionComponent,
+    CreateQuizComponent,
+    ListQuizComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,8 @@ import { ListQuestionComponent } from './component/quiz/question/list-question/l
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [
     {

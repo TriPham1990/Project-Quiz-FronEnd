@@ -29,15 +29,25 @@
         </div>
       </li>
 
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Quiz
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['#']">Tạo mới quiz</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['#']">Danh sách quiz</a>
+        </div>
+      </li>
+
       <li class="nav-item dropdown" *ngIf="userService.userOnline===''">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Tài Khoản
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['register']">Đăng kí</a>
-          <a class="dropdown-item" [routerLink]="['login']">Đăng nhập</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" [routerLink]="['login']">Đăng nhập</a>
         </div>
       </li>
       <li class="nav-item dropdown" *ngIf="userService.userOnline!==''">

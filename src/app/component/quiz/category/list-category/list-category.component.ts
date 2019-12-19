@@ -9,6 +9,8 @@ import {Category} from '../../../../interface/category';
 })
 export class ListCategoryComponent implements OnInit {
 
+  pageActual = 1;
+
   categories: Category[] = [];
 
   constructor(private categoryService: CategoryService) {
