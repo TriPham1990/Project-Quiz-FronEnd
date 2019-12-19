@@ -7,7 +7,7 @@
         <th class="text-center">Sửa / Xóa</th>
       </tr>
       </thead>
-      <tr *ngFor="let category of categories | paginate: {itemsPerPage: 1, currentPage:pageActual};index as i">
+      <tr *ngFor="let category of categories | paginate: {itemsPerPage: 5, currentPage:pageActual};index as i">
         <td>{{category.name}}</td>
         <td class="text-center">
           <a class="btn btn-light"><em class="fa fa-pencil"></em></a>

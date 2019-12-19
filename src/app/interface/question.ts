@@ -1,6 +1,7 @@
 import {Answer} from './answer';
 import {KindOfQuestion} from './kindOfQuestion';
 import {Category} from './category';
+import {Quiz} from './quiz';
 
 export interface Question {
   id?: number;
@@ -8,4 +9,5 @@ export interface Question {
   answers?: Answer[];
   kindOfQuestion?: KindOfQuestion;
   category?: Category;
+  quiz?: Quiz;
 }
