@@ -9,7 +9,6 @@ import {CategoryService} from '../../../../services/category/category.service';
   styleUrls: ['./create-category.component.css']
 })
 export class CreateCategoryComponent implements OnInit {
-  category: Category;
   createCategoryForm: FormGroup;
   isSuccess: boolean;
 

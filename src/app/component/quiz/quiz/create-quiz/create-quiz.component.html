@@ -1,1 +1,56 @@
-<p>create-quiz works!</p>
+<div class="bg_base_lr" style="padding-top: 30px">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3" style="max-width:350px;"></div>
+      <div class="col-sm-6" style="">
+        <form name="form" [formGroup]="createQuizForm" (ngSubmit)="createQuiz()">
+          <div class="form-group">
+            <h3 style="text-align: center">Tạo Mới Bài Quiz</h3>
+            <div class="alert alert-success" role="alert" *ngIf="isSuccess === true">
+              Thêm quiz mới thành công
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="isSuccess === false">
+              Điền thông tin chưa đúng hoặc quiz đã tồn tại
+            </div>
+
+            <h5>Tên bài quiz :</h5>
+            <input type="text" class="form-control" formControlName="name" placeholder="Nhập tên bài quiz mới"/>
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="createQuizForm.get('name').invalid && createQuizForm.get('name').touched">
+              Tên bài quiz không thể để trống
+            </div>
+          </div>
+
+          <div class="form-group">
+            <h5>Số lượng câu hỏi :</h5>
+            <input type="number" class="form-control" formControlName="questionCount" placeholder="Nhập số lượng câu hỏi"/>
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="createQuizForm.get('questionCount').invalid && createQuizForm.get('questionCount').touched">
+              Số lượng câu hỏi không thể để trống
+            </div>
+          </div>
+
+          <div class="container" *ngIf="isCreateQuizSuccess">
+            <h5>Thêm câu hỏi vào bài quiz :</h5>
+            <div>
+              <h6>Chọn danh mục câu hỏi :</h6>
+              <select class="custom-select custom-select-sm" (click)="getListQuestionByCategory($event.target.value)">
+                <option *ngFor="let category of categories"
+                        [value]="category.id">{{category.name}}</option>
+              </select>
+            </div>
+          </div>
+
+
+
+          <div class="form-group" style="text-align: center">
+            <div>
+            </div>
+            <button class="btn btn-primary" type="submit">Tạo mới</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-3" style="max-width:350px;"></div>
+    </div>
+  </div>
+</div>

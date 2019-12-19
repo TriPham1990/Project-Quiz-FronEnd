@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Question} from '../../interface/question';
 import {Observable} from 'rxjs';
+import {Category} from '../../interface/category';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class QuestionService {
     return this.http.post<Question>(`${this.API_URL}`, question);
   }
 
-  getAllListQuestion(): Observable<Question[]> {
+  getAllListQuestion(category?: Category): Observable<Question[]> {
     return this.http.get<Question[]>(`${this.API_URL}`);
   }
 

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Quiz} from '../../interface/quiz';
 import {Observable} from 'rxjs';
@@ -10,8 +10,7 @@ export class QuizService {
 
   private API_URL = 'http://localhost:8080/api/auth/quizzes';
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   createQuiz(quiz: Quiz): Observable<Quiz> {
     return this.http.post<Quiz>(`${this.API_URL}`, quiz);
