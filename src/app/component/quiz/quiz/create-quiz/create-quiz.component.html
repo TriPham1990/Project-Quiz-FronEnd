@@ -39,11 +39,27 @@
                         [value]="category.id">{{category.name}}</option>
               </select>
             </div>
+            <div *ngIf="showListQuestion">
+              <table class="table table-striped custab">
+                <thead>
+                <tr>
+                  <th>Câu Hỏi</th>
+                  <th class="text-center">Thêm</th>
+                </tr>
+                </thead>
+                <tr *ngFor="let question of questions">
+                  <td>{{question.content}}</td>
+                  <td class="text-center">
+                    <a class="btn btn-success"><em class="fa fa-plus"></em></a>
+                  </td>
+                </tr>
+              </table>
+            </div>
           </div>
 
 
 
-          <div class="form-group" style="text-align: center">
+          <div class="form-group" style="text-align: center" *ngIf="!isCreateQuizSuccess">
             <div>
             </div>
             <button class="btn btn-primary" type="submit">Tạo mới</button>

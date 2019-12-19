@@ -16,6 +16,7 @@ export class CreateQuizComponent implements OnInit {
   questions: Question[];
   createQuizForm: FormGroup;
   category: Category;
+  showListQuestion: boolean;
   isSuccess: boolean;
   isCreateQuizSuccess: boolean;
 
@@ -54,12 +55,13 @@ export class CreateQuizComponent implements OnInit {
   }
 
   getListQuestionByCategory(id: number) {
-    this.getCategoryById(id);
-    this.getAllListQuestionByCategory(this.category);
+    // this.getCategoryById(id);
+    this.getAllListQuestionByCategory(id);
+    this.showListQuestion = true;
   }
 
-  getAllListQuestionByCategory(category: Category) {
-    this.questionService.getAllListQuestion(category).subscribe(result => {
+  getAllListQuestionByCategory(id: number) {
+    this.questionService.getAllQuestionByCategoryId(id).subscribe(result => {
       this.questions = result;
       console.log('success');
     }, error => {
