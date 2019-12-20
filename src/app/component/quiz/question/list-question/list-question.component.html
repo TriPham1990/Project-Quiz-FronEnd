@@ -8,7 +8,7 @@
       </tr>
       </thead>
       <tr *ngFor="let question of questions |
-       paginate: {itemsPerPage: 5, currentPage:pageActual};index as i">
+       paginate: {itemsPerPage: 10, currentPage:pageActual};index as i">
         <td>{{question.content}}</td>
         <td class="text-center">
           <a class="btn btn-light"><em class="fa fa-pencil"></em></a>

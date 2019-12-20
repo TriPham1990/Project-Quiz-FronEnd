@@ -26,6 +26,10 @@ export class QuestionService {
     return this.http.get<Question[]>(`${this.API_URL}/findByCategory/${id}`);
   }
 
+  getQuestionById(id: number): Observable<Question> {
+    return this.http.get<Question>(`${this.API_URL}/${id}`);
+  }
+
   updateQuestion(question: Question): Observable<Question> {
     return this.http.put<Question>(`${this.API_URL}/${question.id}`, question);
   }

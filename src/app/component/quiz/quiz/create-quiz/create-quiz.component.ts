@@ -5,6 +5,7 @@ import {CategoryService} from '../../../../services/category/category.service';
 import {Category} from '../../../../interface/category';
 import {QuestionService} from '../../../../services/question/question.service';
 import {Question} from '../../../../interface/question';
+import {Quiz} from '../../../../interface/quiz';
 
 @Component({
   selector: 'app-create-quiz',
@@ -14,11 +15,13 @@ import {Question} from '../../../../interface/question';
 export class CreateQuizComponent implements OnInit {
   categories: Category[];
   questions: Question[];
+  listQuestionCurrent: Question[] = [];
   createQuizForm: FormGroup;
   category: Category;
-  showListQuestion: boolean;
+  question: Question;
+  quiz: Quiz;
   isSuccess: boolean;
-  isCreateQuizSuccess: boolean;
+  isChoseCategory: boolean;
 
   constructor(private fb: FormBuilder, private quizService: QuizService, private categoryService: CategoryService,
               private questionService: QuestionService) {
@@ -36,13 +39,38 @@ export class CreateQuizComponent implements OnInit {
     if (this.createQuizForm.valid) {
       const quiz = this.createQuizForm.value;
       this.quizService.createQuiz(quiz).subscribe(result => {
+        this.quiz = result;
         this.isSuccess = true;
-        this.isCreateQuizSuccess = true;
         this.createQuizForm.reset();
       }, error => {
         this.isSuccess = false;
       });
     }
+  }
+
+  addQuestionToQuiz(id: number) {
+    this.getQuestionById(id);
+  }
+
+  updateQuiz() {
+    this.listQuestionCurrent.push(this.question);
+    console.log(this.listQuestionCurrent.length);
+    this.quiz.questions = this.questions;
+    this.quizService.updateQuiz(this.quiz).subscribe(result => {
+      console.log('success');
+    }, error => {
+      console.log('error');
+    });
+  }
+
+  getQuestionById(id: number) {
+    this.questionService.getQuestionById(id).subscribe(result => {
+      this.question = result;
+      this.updateQuiz();
+      console.log('success');
+    }, error => {
+      console.log('error');
+    });
   }
 
   getListCategory() {
@@ -55,27 +83,19 @@ export class CreateQuizComponent implements OnInit {
   }
 
   getListQuestionByCategory(id: number) {
-    // this.getCategoryById(id);
     this.getAllListQuestionByCategory(id);
-    this.showListQuestion = true;
   }
 
   getAllListQuestionByCategory(id: number) {
     this.questionService.getAllQuestionByCategoryId(id).subscribe(result => {
       this.questions = result;
+      this.isChoseCategory = true;
       console.log('success');
     }, error => {
       console.log('error');
     });
   }
 
-  getCategoryById(id: number) {
-    this.categoryService.getCategoryById(id).subscribe(result => {
-      this.category = result;
-      console.log('success');
-    }, error => {
-      console.log('error');
-    });
-  }
+
 
 }

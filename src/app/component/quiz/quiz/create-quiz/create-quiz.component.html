@@ -30,39 +30,24 @@
             </div>
           </div>
 
-          <div class="container" *ngIf="isCreateQuizSuccess">
-            <h5>Thêm câu hỏi vào bài quiz :</h5>
+          <div>
+            <h5>Chọn danh mục câu hỏi :</h5>
             <div>
-              <h6>Chọn danh mục câu hỏi :</h6>
               <select class="custom-select custom-select-sm" (click)="getListQuestionByCategory($event.target.value)">
                 <option *ngFor="let category of categories"
                         [value]="category.id">{{category.name}}</option>
               </select>
             </div>
-            <div *ngIf="showListQuestion">
-              <table class="table table-striped custab">
-                <thead>
-                <tr>
-                  <th>Câu Hỏi</th>
-                  <th class="text-center">Thêm</th>
-                </tr>
-                </thead>
-                <tr *ngFor="let question of questions">
-                  <td>{{question.content}}</td>
-                  <td class="text-center">
-                    <a class="btn btn-success"><em class="fa fa-plus"></em></a>
-                  </td>
-                </tr>
-              </table>
-            </div>
           </div>
 
+          <br>
 
-
-          <div class="form-group" style="text-align: center" *ngIf="!isCreateQuizSuccess">
+          <div class="form-group" style="text-align: center">
             <div>
             </div>
-            <button class="btn btn-primary" type="submit">Tạo mới</button>
+            <button class="btn btn-primary" type="submit" [attr.disabled]="(isChoseCategory && !createQuizForm.invalid)? null : true">
+              Tạo mới
+            </button>
           </div>
         </form>
       </div>

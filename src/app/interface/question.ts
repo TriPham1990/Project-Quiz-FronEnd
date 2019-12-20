@@ -9,5 +9,4 @@ export interface Question {
   answers?: Answer[];
   kindOfQuestion?: KindOfQuestion;
   category?: Category;
-  quiz?: Quiz;
 }
