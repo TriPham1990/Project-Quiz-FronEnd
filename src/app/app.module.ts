@@ -20,6 +20,7 @@ import { ListQuestionComponent } from './component/quiz/question/list-question/l
 import {NgxPaginationModule} from 'ngx-pagination';
 import { CreateQuizComponent } from './component/quiz/quiz/create-quiz/create-quiz.component';
 import { ListQuizComponent } from './component/quiz/quiz/list-quiz/list-quiz.component';
+import { EditCategoryComponent } from './component/quiz/category/edit-category/edit-category.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ListQuizComponent } from './component/quiz/quiz/list-quiz/list-quiz.com
     CreateQuestionComponent,
     ListQuestionComponent,
     CreateQuizComponent,
-    ListQuizComponent
+    ListQuizComponent,
+    EditCategoryComponent
   ],
   imports: [
     BrowserModule,

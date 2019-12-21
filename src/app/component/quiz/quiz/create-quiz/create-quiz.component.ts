@@ -43,32 +43,57 @@ export class CreateQuizComponent implements OnInit {
       this.getListIdCategoriesCurrent();
       this.getAllQuestionByListCategoriesCurrent(this.listIdCategoriesCurrent);
       const quiz = this.createQuizForm.value;
-      this.quizService.createQuiz(quiz).subscribe(result => {
-        this.quiz = result;
-        this.isSuccess = true;
-      }, error => {
-        this.isSuccess = false;
-      });
+      this.addQuiz(quiz);
     }
   }
 
+  addQuiz(quiz: Quiz) {
+    this.quizService.createQuiz(quiz).subscribe(result => {
+      this.quiz = result;
+      this.isSuccess = true;
+      this.updateQuestionsToQuiz(this.quiz.questionCount, this.listQuestionRandom);
+    }, error => {
+      this.isSuccess = false;
+    });
+  }
+
+  updateQuestionsToQuiz(questionCount: number, listQuestionsRandom: Question[]) {
+    for (let i = 0; i < questionCount; i++) {
+      const numberRandom = Math.floor(Math.random() * listQuestionsRandom.length);
+      this.listQuestionCurrent.push(listQuestionsRandom[numberRandom]);
+      listQuestionsRandom.splice(numberRandom, 1);
+    }
+    this.quiz.questions = this.listQuestionCurrent;
+    this.addQuestionsToQuiz(this.quiz);
+  }
+
+  addQuestionsToQuiz(quiz: Quiz) {
+    this.quizService.updateQuiz(this.quiz).subscribe(result => {
+      console.log(result.questions);
+      console.log('them duoc roi');
+    }, error => {
+      console.log('ko them dc roi');
+    });
+
+  }
 
   getAllQuestionByListCategoriesCurrent(listIdCategoriesCurrent: number[]) {
     this.listIdCategoriesCurrent.forEach(value => {
       this.getQuestionsByCategoryId(value);
     });
   }
+
   getQuestionsByCategoryId(id: number) {
     this.questionService.getAllQuestionByCategoryId(id).subscribe(result => {
       this.listQuestionGetByCategoryId = result;
-      this.addQuestionToListQuestionRandom();
+      this.addQuestionsToListQuestionRandom();
       console.log('success');
     }, error => {
       console.log('error');
     });
   }
 
-  addQuestionToListQuestionRandom() {
+  addQuestionsToListQuestionRandom() {
     this.listQuestionRandom = this.listQuestionRandom.concat(this.listQuestionGetByCategoryId);
   }
 

@@ -10,8 +10,8 @@
       <tr *ngFor="let category of categories | paginate: {itemsPerPage: 5, currentPage:pageActual};index as i">
         <td>{{category.name}}</td>
         <td class="text-center">
-          <a class="btn btn-light"><em class="fa fa-pencil"></em></a>
-          <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+          <a class="btn btn-light" [routerLink]="['/edit-category', category.id]"><em class="fa fa-pencil"></em></a>
+          <button class="btn btn-danger" (click)="submitDeleteCategory(category.id)"><em class="fa fa-trash"></em></button>
         </td>
       </tr>
     </table>

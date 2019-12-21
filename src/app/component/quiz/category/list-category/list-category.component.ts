@@ -25,6 +25,18 @@ export class ListCategoryComponent implements OnInit {
     });
   }
 
-  deleteCategory() {}
+  submitDeleteCategory(id: number) {
+    if (confirm('Bạn có thực sự muốn xóa danh mục này') === true) {
+      this.deleteCategory(id);
+    }
+  }
 
+  deleteCategory(id: number) {
+    this.categoryService.deleteCategory(id).subscribe(result => {
+      this.ngOnInit();
+      console.log('success');
+    }, error => {
+      console.log('error');
+    });
+  }
 }
