@@ -52,20 +52,10 @@ export class CreateQuestionComponent implements OnInit {
 
     this.getListCategory();
     this.getListKindOfQuestion();
-    this.getListQuestion();
 
     this.isCreateQuestionSuccess = false;
     this.isChoseKindOfQuestion = false;
     this.isChoseCorrectAnswer = false;
-  }
-
-  getListQuestion() {
-    this.questionService.getAllListQuestion().subscribe(result => {
-      this.questions = result;
-      console.log('success');
-    }, () => {
-      console.log('error');
-    });
   }
 
   getListCategory() {

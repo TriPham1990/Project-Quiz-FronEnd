@@ -14,8 +14,8 @@
         <td *ngIf="question.category">{{question.category.name}}</td>
         <td *ngIf="question.category === null">Cần cập nhật danh mục cho câu hỏi</td>
         <td class="text-center">
-          <a class="btn btn-light"><em class="fa fa-pencil"></em></a>
-          <a class="btn btn-danger"><em class="fa fa-trash"></em></a>
+          <a class="btn btn-light" [routerLink]="['/edit-question', question.id]"><em class="fa fa-pencil"></em></a>
+          <button class="btn btn-danger"><em class="fa fa-trash"></em></button>
         </td>
       </tr>
     </table>
