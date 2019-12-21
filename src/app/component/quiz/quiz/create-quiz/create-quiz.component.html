@@ -32,11 +32,15 @@
 
           <div>
             <h5>Chọn danh mục câu hỏi :</h5>
-            <div>
-              <select class="custom-select custom-select-sm" (click)="getListQuestionByCategory($event.target.value)">
-                <option *ngFor="let category of categories"
-                        [value]="category.id">{{category.name}}</option>
-              </select>
+            <div class="input-group mb-3" *ngFor="let category of categories">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input type="checkbox" aria-label="Checkbox for following text input" name="category" [value]="category.id" (click)="choseCategory()">
+                </div>
+              </div>
+              <ul class="list-group">
+                <li class="list-group-item">{{category.name}}</li>
+              </ul>
             </div>
           </div>
 
@@ -55,3 +59,28 @@
     </div>
   </div>
 </div>
+
+<!--<div class="container-fluid">-->
+<!--  <div class="row col-md-12 col-md-offset-2 custyle text-center">-->
+<!--    <table class="table table-striped custab">-->
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        <th>Câu Hỏi</th>-->
+<!--        <th class="text-center">Sửa / Xóa</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tr *ngFor="let question of listQuestionGetByCategoryId |-->
+<!--       paginate: {itemsPerPage: 10, currentPage:pageActual};index as i">-->
+<!--        <td>{{question.content}}</td>-->
+<!--        <td class="text-center">-->
+<!--          <a class="btn btn-light"><em class="fa fa-pencil"></em></a>-->
+<!--          <a class="btn btn-danger"><em class="fa fa-trash"></em></a>-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--    </table>-->
+<!--    <div id="pagination" style="margin: 0 auto">-->
+<!--      <pagination-controls (pageChange)="pageActual = $event"-->
+<!--      ></pagination-controls>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

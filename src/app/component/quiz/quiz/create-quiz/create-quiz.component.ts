@@ -14,14 +14,17 @@ import {Quiz} from '../../../../interface/quiz';
 })
 export class CreateQuizComponent implements OnInit {
   categories: Category[];
-  questions: Question[];
+  listQuestionGetByCategoryId: Question[];
+  listQuestionRandom: Question[] = [];
   listQuestionCurrent: Question[] = [];
   createQuizForm: FormGroup;
-  category: Category;
-  question: Question;
   quiz: Quiz;
   isSuccess: boolean;
   isChoseCategory: boolean;
+  listIdCategoriesCurrent: number[] = [];
+  checkboxes: any;
+
+  pageActual = 1;
 
   constructor(private fb: FormBuilder, private quizService: QuizService, private categoryService: CategoryService,
               private questionService: QuestionService) {
@@ -37,41 +40,38 @@ export class CreateQuizComponent implements OnInit {
 
   createQuiz() {
     if (this.createQuizForm.valid) {
+      this.getListIdCategoriesCurrent();
+      this.getAllQuestionByListCategoriesCurrent(this.listIdCategoriesCurrent);
       const quiz = this.createQuizForm.value;
       this.quizService.createQuiz(quiz).subscribe(result => {
         this.quiz = result;
         this.isSuccess = true;
-        this.createQuizForm.reset();
       }, error => {
         this.isSuccess = false;
       });
     }
   }
 
-  addQuestionToQuiz(id: number) {
-    this.getQuestionById(id);
-  }
 
-  updateQuiz() {
-    this.listQuestionCurrent.push(this.question);
-    console.log(this.listQuestionCurrent.length);
-    this.quiz.questions = this.questions;
-    this.quizService.updateQuiz(this.quiz).subscribe(result => {
+  getAllQuestionByListCategoriesCurrent(listIdCategoriesCurrent: number[]) {
+    this.listIdCategoriesCurrent.forEach(value => {
+      this.getQuestionsByCategoryId(value);
+    });
+  }
+  getQuestionsByCategoryId(id: number) {
+    this.questionService.getAllQuestionByCategoryId(id).subscribe(result => {
+      this.listQuestionGetByCategoryId = result;
+      this.addQuestionToListQuestionRandom();
       console.log('success');
     }, error => {
       console.log('error');
     });
   }
 
-  getQuestionById(id: number) {
-    this.questionService.getQuestionById(id).subscribe(result => {
-      this.question = result;
-      this.updateQuiz();
-      console.log('success');
-    }, error => {
-      console.log('error');
-    });
+  addQuestionToListQuestionRandom() {
+    this.listQuestionRandom = this.listQuestionRandom.concat(this.listQuestionGetByCategoryId);
   }
+
 
   getListCategory() {
     this.categoryService.getAllListCategory().subscribe(result => {
@@ -82,20 +82,19 @@ export class CreateQuizComponent implements OnInit {
     });
   }
 
-  getListQuestionByCategory(id: number) {
-    this.getAllListQuestionByCategory(id);
+  choseCategory() {
+    this.isChoseCategory = true;
   }
 
-  getAllListQuestionByCategory(id: number) {
-    this.questionService.getAllQuestionByCategoryId(id).subscribe(result => {
-      this.questions = result;
-      this.isChoseCategory = true;
-      console.log('success');
-    }, error => {
-      console.log('error');
+  getListIdCategoriesCurrent() {
+    this.checkboxes = document.getElementsByName('category');
+
+    this.checkboxes.forEach(value => {
+      if (value.checked === true) {
+        this.listIdCategoriesCurrent.push(value.value);
+      }
     });
   }
-
 
 
 }

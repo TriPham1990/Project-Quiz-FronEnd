@@ -23,9 +23,9 @@ export class CreateQuestionComponent implements OnInit {
   categories: Category[];
   questions: Question[] = [];
   failMessage: string;
-  isCreateQuestionSuccess: boolean; // ok
-  isChoseKindOfQuestion: boolean; // ok
-  choseClassifyQuestion: boolean; // ok
+  isCreateQuestionSuccess: boolean;
+  isChoseKindOfQuestion: boolean;
+  choseClassifyQuestion: boolean;
   isChoseCorrectAnswer: boolean;
   idQuestionCurrent: number;
   answers: Answer[] = [];
