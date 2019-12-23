@@ -9,7 +9,9 @@
         <div class="quiz" data-toggle="buttons" *ngFor="let answer of answers">
           <label *ngIf="answer.question.id == question.id" class="element-animation btn btn-lg btn-warning btn-block">
             <span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
-            <input type="radio" name="q_answer" [value]="answer.id">{{answer.content}}</label>
+            <input type="radio" *ngIf="question.kindOfQuestion.id === 1" (click)="checkAnswerOne(answer.id)" name="answer" [value]="answer.id">
+            <input type="checkbox" *ngIf="question.kindOfQuestion.id === 2" (click)="checkAnswerTwo(answer.id)" name="answer" [value]="answer.id">
+            {{answer.content}}</label>
         </div>
       </div>
       <div class="modal-footer text-muted">
@@ -17,6 +19,7 @@
       </div>
       <div id="pagination" style="margin: 0 auto">
         <pagination-controls (pageChange)="pageActual = $event"
+                             (click)="checkAnswer()"
         ></pagination-controls>
       </div>
     </div>

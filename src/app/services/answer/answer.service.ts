@@ -22,6 +22,10 @@ export class AnswerService {
     return this.http.get<Answer[]>(`${this.API_URL}/findByQuestion/${id}`);
   }
 
+  getAnswerById(id: number): Observable<Answer> {
+    return this.http.get<Answer>(`${this.API_URL}/${id}`);
+  }
+
   getAllListAnswer(): Observable<Answer[]> {
     return this.http.get<Answer[]>(`${this.API_URL}`);
   }

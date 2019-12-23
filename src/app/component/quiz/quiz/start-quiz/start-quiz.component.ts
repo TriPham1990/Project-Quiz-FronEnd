@@ -57,4 +57,12 @@ export class StartQuizComponent implements OnInit {
     this.answers = this.answers.concat(this.answerGetByQuestionId);
     console.log(this.answers);
   }
+
+  checkAnswerOne(id: number) {
+
+  }
+
+  getAnswerById(id: number) {
+    this.answerService.
+  }
 }
