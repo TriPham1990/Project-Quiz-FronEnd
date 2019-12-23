@@ -1,23 +1,46 @@
 <div class="container-fluid">
-  <div class="row col-md-12 col-md-offset-2 custyle text-center">
-    <table class="table table-striped custab">
-      <thead>
-      <tr>
-        <th>Tên Bài Quiz</th>
-        <th class="text-center">Vào Thi</th>
-      </tr>
-      </thead>
-      <tr *ngFor="let quiz of quizzes |
-       paginate: {itemsPerPage: 10, currentPage:pageActual};index as i">
-        <td >{{quiz.name}}</td>
-        <td class="text-center">
-          <a class="btn btn-success" [routerLink]="['/start-quiz', quiz.id]"><em class="fa fa-pencil"></em></a>
-        </td>
-      </tr>
-    </table>
-    <div id="pagination" style="margin: 0 auto">
-      <pagination-controls (pageChange)="pageActual = $event"
-      ></pagination-controls>
+  <!--  <div class="row col-md-12 col-md-offset-2 custyle text-center">-->
+  <!--    <table class="table table-striped custab">-->
+  <!--      <thead>-->
+  <!--      <tr>-->
+  <!--        <th>Tên Bài Quiz</th>-->
+  <!--        <th class="text-center">Vào Thi</th>-->
+  <!--      </tr>-->
+  <!--      </thead>-->
+  <!--      <tr *ngFor="let quiz of quizzes |-->
+  <!--       paginate: {itemsPerPage: 10, currentPage:pageActual};index as i">-->
+  <!--        <td >{{quiz.name}}</td>-->
+  <!--        <td class="text-center">-->
+  <!--          <a class="btn btn-success" [routerLink]="['/start-quiz', quiz.id]"><em class="fa fa-pencil"></em></a>-->
+  <!--        </td>-->
+  <!--      </tr>-->
+  <!--    </table>-->
+  <!--    <div id="pagination" style="margin: 0 auto">-->
+  <!--      <pagination-controls (pageChange)="pageActual = $event"-->
+  <!--      ></pagination-controls>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <h2><p class="alignCenter">Chào mừng bạn đến với Quiz miễn phí</p></h2>
+  <br>
+  <div class="bg_base_lr" style="padding-top: 30px; background: orange">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3" style="max-width:350px;"></div>
+        <div class="col-sm-6" style="">
+          <div class="form-group">
+            <!--            <div id="logo">Tạo Mới Danh Mục</div>-->
+            <h3>Chúng ta hãy bắt đầu nhé</h3>
+          </div>
+          <div class="form-group" style="text-align: center">
+            <div>
+              <p class="phong">
+                <button class="btn btn-primary btn-green-moon" type="submit" routerLink="/list-quiz">Bắt Đầu</button>
+              </p>
+
+            </div>
+            <div class="col-sm-3" style="max-width:350px;"></div>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </div>
-</div>
