@@ -17,6 +17,21 @@ import { HomeComponent } from './component/layout/home/home.component';
 import {ListCategoryComponent} from './component/quiz/category/list-category/list-category.component';
 import { CreateQuestionComponent } from './component/quiz/question/create-question/create-question.component';
 import { ListQuestionComponent } from './component/quiz/question/list-question/list-question.component';
+import {SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider} from 'ng4-social-login';
+const config = new AuthServiceConfig([
+  {
+   id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('AIzaSyAxs6Rwq952a00s1azypxxIy5uuL0QOI0c'),
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('627015814504329')
+  }
+], false);
+export function provideConfig() {
+  return config;
+
+}
 
 @NgModule({
   declarations: [
@@ -34,6 +49,7 @@ import { ListQuestionComponent } from './component/quiz/question/list-question/l
   ],
   imports: [
     BrowserModule,
+    SocialLoginModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -41,6 +57,9 @@ import { ListQuestionComponent } from './component/quiz/question/list-question/l
     FormsModule
   ],
   providers: [
+    {
+      provide: AuthServiceConfig, useFactory: provideConfig
+    },
     {
       provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
     }
