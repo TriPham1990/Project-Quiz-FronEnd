@@ -1,0 +1,25 @@
+<div class="container-fluid" style="background-color: orange">
+  <div class="modal-dialog" style="background-color: orange">
+    <div class="modal-content" *ngFor="let question of questions |
+       paginate: {itemsPerPage: 1, currentPage:pageActual};index as i" >
+      <div class="modal-header">
+        <h3>{{question.content}}</h3>
+      </div>
+      <div class="modal-body">
+        <div class="quiz" data-toggle="buttons" *ngFor="let answer of answers">
+          <label *ngIf="answer.question.id == question.id" class="element-animation btn btn-lg btn-warning btn-block">
+            <span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
+            <input type="radio" name="q_answer" [value]="answer.id">{{answer.content}}</label>
+        </div>
+      </div>
+      <div class="modal-footer text-muted">
+        <span id="answer"></span>
+      </div>
+      <div id="pagination" style="margin: 0 auto">
+        <pagination-controls (pageChange)="pageActual = $event"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+

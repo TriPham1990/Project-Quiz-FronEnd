@@ -11,6 +11,7 @@ import {CreateQuizComponent} from './component/quiz/quiz/create-quiz/create-quiz
 import {ListQuizComponent} from './component/quiz/quiz/list-quiz/list-quiz.component';
 import {EditCategoryComponent} from './component/quiz/category/edit-category/edit-category.component';
 import {EditQuestionComponent} from './component/quiz/question/edit-question/edit-question.component';
+import {StartQuizComponent} from './component/quiz/quiz/start-quiz/start-quiz.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: 'create-quiz', component: CreateQuizComponent},
   {path: 'list-quiz', component: ListQuizComponent},
   {path: 'edit-category/:id', component: EditCategoryComponent},
-  {path: 'edit-question/:id', component: EditQuestionComponent}
+  {path: 'edit-question/:id', component: EditQuestionComponent},
+  {path: 'start-quiz/:id', component: StartQuizComponent}
 ];
 
 @NgModule({

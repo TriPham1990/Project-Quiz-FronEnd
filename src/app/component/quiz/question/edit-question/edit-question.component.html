@@ -5,12 +5,12 @@
       <div class="col-sm-8" style="">
         <form name="form" [formGroup]="editQuestionForm">
           <div class="form-group">
-            <h3 style="text-align: center">Tạo câu hỏi</h3>
+            <h2 style="text-align: center">Cập nhật câu hỏi</h2><br>
             <div class="alert alert-danger" role="alert" *ngIf="failMessage">
               <p>{{failMessage}}</p>
             </div>
             <h6>Danh mục câu hỏi :</h6>
-            <select class="custom-select custom-select-sm" formControlName="category" [value]="idCategory">
+            <select class="custom-select custom-select-sm" formControlName="category" [value]="(isHadCategory)? idCategory : 0">
               <option *ngFor="let category of categories"
                       [value]="category.id">{{category.name}}</option>
             </select>
@@ -22,7 +22,7 @@
 
           <div class="form-group">
             <h6>Loại câu hỏi :</h6>
-            <select class="custom-select custom-select-sm" formControlName="kindOfQuestion">
+            <select class="custom-select custom-select-sm" formControlName="kindOfQuestion" [value]="(isHadKindOfQuestion)? idKindOfQuestion : 0">
               <option *ngFor="let kindOfQuestion of kindOfQuestions"
                       [value]="kindOfQuestion.id">{{kindOfQuestion.name}}</option>
             </select>

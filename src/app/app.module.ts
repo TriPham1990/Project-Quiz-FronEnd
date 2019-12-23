@@ -22,6 +22,7 @@ import { CreateQuizComponent } from './component/quiz/quiz/create-quiz/create-qu
 import { ListQuizComponent } from './component/quiz/quiz/list-quiz/list-quiz.component';
 import { EditCategoryComponent } from './component/quiz/category/edit-category/edit-category.component';
 import { EditQuestionComponent } from './component/quiz/question/edit-question/edit-question.component';
+import { StartQuizComponent } from './component/quiz/quiz/start-quiz/start-quiz.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { EditQuestionComponent } from './component/quiz/question/edit-question/e
     CreateQuizComponent,
     ListQuizComponent,
     EditCategoryComponent,
-    EditQuestionComponent
+    EditQuestionComponent,
+    StartQuizComponent
   ],
   imports: [
     BrowserModule,

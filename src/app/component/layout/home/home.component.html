@@ -1,2 +1,23 @@
-<p>home works!</p>
-Dai ca Tri Lo day
+<div class="container-fluid">
+  <div class="row col-md-12 col-md-offset-2 custyle text-center">
+    <table class="table table-striped custab">
+      <thead>
+      <tr>
+        <th>Tên Bài Quiz</th>
+        <th class="text-center">Vào Thi</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let quiz of quizzes |
+       paginate: {itemsPerPage: 10, currentPage:pageActual};index as i">
+        <td >{{quiz.name}}</td>
+        <td class="text-center">
+          <a class="btn btn-success" [routerLink]="['/start-quiz', quiz.id]"><em class="fa fa-pencil"></em></a>
+        </td>
+      </tr>
+    </table>
+    <div id="pagination" style="margin: 0 auto">
+      <pagination-controls (pageChange)="pageActual = $event"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>

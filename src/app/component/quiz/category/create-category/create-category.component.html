@@ -1,11 +1,12 @@
-<div class="bg_base_lr" style="padding-top: 30px">
+<div class="bg_base_lr" style="padding-top: 30px; background: orange">
   <div class="container">
     <div class="row">
       <div class="col-sm-3" style="max-width:350px;"></div>
       <div class="col-sm-6" style="">
         <form name="form" [formGroup]="createCategoryForm" (ngSubmit)="createCategory()">
           <div class="form-group">
-            <h3 style="text-align: center">Tạo Mới Danh Mục</h3>
+<!--            <div id="logo">Tạo Mới Danh Mục</div>-->
+            <h3>Tạo Mới Danh Mục</h3>
             <input type="text" class="form-control" formControlName="name" placeholder="Nhập tên danh mục mới"/>
             <div class="alert alert-danger" role="alert"
                  *ngIf="createCategoryForm.get('name').invalid && createCategoryForm.get('name').touched">
@@ -23,7 +24,7 @@
           <div class="form-group" style="text-align: center">
             <div>
             </div>
-            <button class="btn btn-primary" type="submit">Tạo mới</button>
+            <button class="btn btn-primary btn-green-moon" type="submit">Tạo mới</button>
           </div>
         </form>
       </div>

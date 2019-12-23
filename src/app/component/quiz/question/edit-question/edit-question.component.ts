@@ -24,6 +24,9 @@ export class EditQuestionComponent implements OnInit {
   failMessage: string;
   choseClassifyQuestion: boolean;
   idCategory: number;
+  idKindOfQuestion: number;
+  isHadCategory: boolean;
+  isHadKindOfQuestion: boolean;
 
   constructor(private fb: FormBuilder,
               private questionService: QuestionService,
@@ -34,29 +37,30 @@ export class EditQuestionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getListCategory();
+    this.getListKindOfQuestion();
+    const id = +this.route.snapshot.paramMap.get('id');
     this.editQuestionForm = this.fb.group({
       category: [null, Validators.required],
       kindOfQuestion: [null, Validators.required],
       content: [null, Validators.required],
     });
-
-    const id = +this.route.snapshot.paramMap.get('id');
     this.getQuestionById(id);
-    this.getListCategory();
-    this.getListKindOfQuestion();
   }
 
   getQuestionById(id: number) {
     this.questionService.getQuestionById(id).subscribe(result => {
       this.question = result;
       this.editQuestionForm.patchValue(this.question);
-      this.idCategory = this.question.category.id;
+
+      this.checkExistCategory();
+
+      this.checkExistKindOfQuestion();
+
+      this.checkKindOfQuestion();
+
       this.getAllListAnswerByQuestionId(id);
-      if (this.question.kindOfQuestion.id === 1) {
-        this.choseClassifyQuestion = true;
-      } else {
-        this.choseClassifyQuestion = false;
-      }
+
     }, error => {
       console.log('error');
     });
@@ -87,5 +91,31 @@ export class EditQuestionComponent implements OnInit {
     }, error => {
       console.log('error');
     });
+  }
+
+  checkExistCategory() {
+    if (this.question.category !== null) {
+      this.idCategory = this.question.category.id;
+      this.isHadCategory = true;
+    } else {
+      this.isHadCategory = false;
+    }
+  }
+
+  checkExistKindOfQuestion() {
+    if (this.question.kindOfQuestion !== null) {
+      this.idKindOfQuestion = this.question.kindOfQuestion.id;
+      this.isHadKindOfQuestion = true;
+    } else {
+      this.isHadKindOfQuestion = false;
+    }
+  }
+
+  checkKindOfQuestion() {
+    if (this.question.kindOfQuestion.id === 1) {
+      this.choseClassifyQuestion = true;
+    } else {
+      this.choseClassifyQuestion = false;
+    }
   }
 }
