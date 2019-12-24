@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Question} from '../../interface/question';
 import {Observable} from 'rxjs';
+import {Category} from '../../interface/category';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class QuestionService {
 
   private API_URL = 'http://localhost:8080/api/auth/questions';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   createQuestion(question: Question): Observable<Question> {
     return this.http.post<Question>(`${this.API_URL}`, question);
@@ -18,6 +20,14 @@ export class QuestionService {
 
   getAllListQuestion(): Observable<Question[]> {
     return this.http.get<Question[]>(`${this.API_URL}`);
+  }
+
+  getAllQuestionByCategoryId(id: number): Observable<Question[]> {
+    return this.http.get<Question[]>(`${this.API_URL}/findByCategory/${id}`);
+  }
+
+  getQuestionById(id: number): Observable<Question> {
+    return this.http.get<Question>(`${this.API_URL}/${id}`);
   }
 
   updateQuestion(question: Question): Observable<Question> {

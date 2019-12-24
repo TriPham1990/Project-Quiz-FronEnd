@@ -7,6 +7,11 @@ import {HomeComponent} from './component/layout/home/home.component';
 import {ListCategoryComponent} from './component/quiz/category/list-category/list-category.component';
 import {CreateQuestionComponent} from './component/quiz/question/create-question/create-question.component';
 import {ListQuestionComponent} from './component/quiz/question/list-question/list-question.component';
+import {CreateQuizComponent} from './component/quiz/quiz/create-quiz/create-quiz.component';
+import {ListQuizComponent} from './component/quiz/quiz/list-quiz/list-quiz.component';
+import {EditCategoryComponent} from './component/quiz/category/edit-category/edit-category.component';
+import {EditQuestionComponent} from './component/quiz/question/edit-question/edit-question.component';
+import {StartQuizComponent} from './component/quiz/quiz/start-quiz/start-quiz.component';
 
 
 const routes: Routes = [
@@ -16,7 +21,12 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'list-category', component: ListCategoryComponent},
   {path: 'create-question', component: CreateQuestionComponent},
-  {path: 'list-question', component: ListQuestionComponent}
+  {path: 'list-question', component: ListQuestionComponent},
+  {path: 'create-quiz', component: CreateQuizComponent},
+  {path: 'list-quiz', component: ListQuizComponent},
+  {path: 'edit-category/:id', component: EditCategoryComponent},
+  {path: 'edit-question/:id', component: EditQuestionComponent},
+  {path: 'start-quiz/:id', component: StartQuizComponent}
 ];
 
 @NgModule({

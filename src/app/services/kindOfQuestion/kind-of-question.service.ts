@@ -8,7 +8,7 @@ import {KindOfQuestion} from '../../interface/kindOfQuestion';
 })
 export class KindOfQuestionService {
 
-  private API_URL = 'http://localhost:8080/api/auth/kindOfQuestion';
+  private API_URL = 'http://localhost:8080/api/auth/kindOfQuestions';
 
   constructor(private http: HttpClient) {
   }

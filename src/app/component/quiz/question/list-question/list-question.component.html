@@ -1,2 +1,27 @@
-<p>list-question works!</p>
-Tri dai ca
+<div class="container-fluid">
+  <div class="row col-md-12 col-md-offset-2 custyle text-center">
+    <table class="table table-striped custab">
+      <thead>
+      <tr>
+        <th>Câu Hỏi</th>
+        <th>Danh Mục</th>
+        <th class="text-center">Sửa / Xóa</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let question of questions |
+       paginate: {itemsPerPage: 10, currentPage:pageActual};index as i">
+        <td >{{question.content}}</td>
+        <td *ngIf="question.category">{{question.category.name}}</td>
+        <td *ngIf="question.category === null">Cần cập nhật danh mục cho câu hỏi</td>
+        <td class="text-center">
+          <a class="btn btn-light" [routerLink]="['/edit-question', question.id]"><em class="fa fa-pencil"></em></a>
+          <button class="btn btn-danger"><em class="fa fa-trash"></em></button>
+        </td>
+      </tr>
+    </table>
+    <div id="pagination" style="margin: 0 auto">
+      <pagination-controls (pageChange)="pageActual = $event"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>

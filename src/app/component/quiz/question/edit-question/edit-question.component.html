@@ -3,32 +3,31 @@
     <div class="row">
       <div class="col-sm-2" style="max-width:350px;"></div>
       <div class="col-sm-8" style="">
-        <form name="form" [formGroup]="createQuestionForm">
+        <form name="form" [formGroup]="editQuestionForm">
           <div class="form-group">
-            <h3 style="text-align: center">Tạo câu hỏi</h3>
+            <h2 style="text-align: center">Cập nhật câu hỏi</h2><br>
             <div class="alert alert-danger" role="alert" *ngIf="failMessage">
               <p>{{failMessage}}</p>
             </div>
             <h6>Danh mục câu hỏi :</h6>
-            <select class="custom-select custom-select-sm" formControlName="category">
+            <select class="custom-select custom-select-sm" formControlName="category" [value]="(isHadCategory)? idCategory : 0">
               <option *ngFor="let category of categories"
                       [value]="category.id">{{category.name}}</option>
             </select>
             <div class="alert alert-danger" role="alert"
-                 *ngIf="createQuestionForm.get('category').invalid && createQuestionForm.get('category').touched">
+                 *ngIf="editQuestionForm.get('category').invalid && editQuestionForm.get('category').touched">
               Danh mục không thể để trống.
             </div>
           </div>
 
           <div class="form-group">
             <h6>Loại câu hỏi :</h6>
-            <select class="custom-select custom-select-sm" formControlName="kindOfQuestion"
-                    (click)="kindOfQuestionForm($event.target.value)">
+            <select class="custom-select custom-select-sm" formControlName="kindOfQuestion" [value]="(isHadKindOfQuestion)? idKindOfQuestion : 0">
               <option *ngFor="let kindOfQuestion of kindOfQuestions"
                       [value]="kindOfQuestion.id">{{kindOfQuestion.name}}</option>
             </select>
             <div class="alert alert-danger" role="alert"
-                 *ngIf="createQuestionForm.get('kindOfQuestion').invalid && createQuestionForm.get('kindOfQuestion').touched">
+                 *ngIf="editQuestionForm.get('kindOfQuestion').invalid && editQuestionForm.get('kindOfQuestion').touched">
               Loại câu hỏi không thể để trống.
             </div>
           </div>
@@ -38,7 +37,7 @@
             <textarea type="text" class="form-control" formControlName="content"
                       placeholder="Enter the question"></textarea>
             <div class="alert alert-danger" role="alert"
-                 *ngIf="createQuestionForm.get('content').invalid && createQuestionForm.get('content').touched">
+                 *ngIf="editQuestionForm.get('content').invalid && editQuestionForm.get('content').touched">
               Câu hỏi không thể để trống.
             </div>
           </div>
@@ -55,31 +54,8 @@
             </ul>
           </div>
 
-          <div class="container" *ngIf="isChoseKindOfQuestion">
-            <h6>Thêm câu trả lời :</h6>
-            <div class="row">
-              <form id="regForm" name="form" [formGroup]="createAnswerForm" (ngSubmit)="createQuestion()">
-                <div class="form-group">
-                  <label>
-                      <textarea type="text" class="form-control" placeholder="Nhập vào câu trả lời"
-                                formControlName="content"></textarea>
-                  </label>
-                </div>
-
-                <div class="radio">
-                  <label><input  type="radio" [attr.disabled]="(isChoseCorrectAnswer)? true : null" formControlName="correct" name="correct" value="{{true}}"> Câu trả lời
-                    đúng</label>
-                </div>
-                <div class="radio">
-                  <label><input type="radio" formControlName="correct" name="correct" value="{{false}}"> Câu trả lời
-                    sai</label>
-                </div>
-
-                <div class="form-group">
-                  <input type="submit" [disabled]="createAnswerForm.invalid" class="btn btn-primary" [value]="(!updateStatus)? 'Tạo câu hỏi' : 'Thêm câu trả lời'">
-                </div>
-              </form>
-            </div>
+          <div class="form-group">
+            <input type="submit" [disabled]="editQuestionForm.invalid" class="btn btn-primary" [value]="'Cập nhật'">
           </div>
 
         </form>

@@ -1,21 +1,20 @@
-<div class="bg_base_lr" style="padding-top: 30px; background: orange">
+<div class="bg_base_lr" style="padding-top: 30px">
   <div class="container">
     <div class="row">
       <div class="col-sm-3" style="max-width:350px;"></div>
       <div class="col-sm-6" style="">
-        <form name="form" [formGroup]="createCategoryForm" (ngSubmit)="createCategory()">
+        <form name="form" [formGroup]="editCategoryForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-<!--            <div id="logo">Tạo Mới Danh Mục</div>-->
-            <h3>Tạo Mới Danh Mục</h3>
+            <h3 style="text-align: center">Tạo Mới Danh Mục</h3>
             <input type="text" class="form-control" formControlName="name" placeholder="Nhập tên danh mục mới"/>
             <div class="alert alert-danger" role="alert"
-                 *ngIf="createCategoryForm.get('name').invalid && createCategoryForm.get('name').touched">
+                 *ngIf="editCategoryForm.get('name').invalid && editCategoryForm.get('name').touched">
               Danh mục không thể để trống
             </div>
           </div>
 
           <div class="alert alert-success" role="alert" *ngIf="isSuccess === true">
-            Thêm danh mục thành công
+            Sửa danh mục thành công
           </div>
           <div class="alert alert-danger" role="alert" *ngIf="isSuccess === false">
             Điền thông tin chưa đúng hoặc danh mục đã tồn tại
@@ -24,7 +23,7 @@
           <div class="form-group" style="text-align: center">
             <div>
             </div>
-            <button class="btn btn-primary btn-green-moon" type="submit">Tạo mới</button>
+            <button class="btn btn-primary" type="submit">Cập nhật</button>
           </div>
         </form>
       </div>

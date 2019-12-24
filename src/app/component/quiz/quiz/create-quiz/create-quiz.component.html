@@ -1,0 +1,86 @@
+<div class="bg_base_lr" style="padding-top: 30px">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3" style="max-width:350px;"></div>
+      <div class="col-sm-6" style="">
+        <form name="form" [formGroup]="createQuizForm" (ngSubmit)="createQuiz()">
+          <div class="form-group">
+            <h3 style="text-align: center">Tạo Mới Bài Quiz</h3>
+            <div class="alert alert-success" role="alert" *ngIf="isSuccess === true">
+              Thêm quiz mới thành công
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="isSuccess === false">
+              Điền thông tin chưa đúng hoặc quiz đã tồn tại
+            </div>
+
+            <h5>Tên bài quiz :</h5>
+            <input type="text" class="form-control" formControlName="name" placeholder="Nhập tên bài quiz mới"/>
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="createQuizForm.get('name').invalid && createQuizForm.get('name').touched">
+              Tên bài quiz không thể để trống
+            </div>
+          </div>
+
+          <div class="form-group">
+            <h5>Số lượng câu hỏi :</h5>
+            <input type="number" class="form-control" formControlName="questionCount" placeholder="Nhập số lượng câu hỏi"/>
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="createQuizForm.get('questionCount').invalid && createQuizForm.get('questionCount').touched">
+              Số lượng câu hỏi không thể để trống
+            </div>
+          </div>
+
+          <div>
+            <h5>Chọn danh mục câu hỏi :</h5>
+            <div class="input-group mb-3" *ngFor="let category of categories">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <input type="checkbox" aria-label="Checkbox for following text input" name="category" [value]="category.id" (click)="choseCategory()">
+                </div>
+              </div>
+              <ul class="list-group">
+                <li class="list-group-item">{{category.name}}</li>
+              </ul>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="form-group" style="text-align: center">
+            <div>
+            </div>
+            <button class="btn btn-primary" type="submit" [attr.disabled]="(isChoseCategory && !createQuizForm.invalid)? null : true">
+              Tạo mới
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-3" style="max-width:350px;"></div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="container-fluid">-->
+<!--  <div class="row col-md-12 col-md-offset-2 custyle text-center">-->
+<!--    <table class="table table-striped custab">-->
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        <th>Câu Hỏi</th>-->
+<!--        <th class="text-center">Sửa / Xóa</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tr *ngFor="let question of listQuestionGetByCategoryId |-->
+<!--       paginate: {itemsPerPage: 10, currentPage:pageActual};index as i">-->
+<!--        <td>{{question.content}}</td>-->
+<!--        <td class="text-center">-->
+<!--          <a class="btn btn-light"><em class="fa fa-pencil"></em></a>-->
+<!--          <a class="btn btn-danger"><em class="fa fa-trash"></em></a>-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--    </table>-->
+<!--    <div id="pagination" style="margin: 0 auto">-->
+<!--      <pagination-controls (pageChange)="pageActual = $event"-->
+<!--      ></pagination-controls>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

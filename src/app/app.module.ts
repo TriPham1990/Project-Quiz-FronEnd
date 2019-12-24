@@ -18,6 +18,7 @@ import {ListCategoryComponent} from './component/quiz/category/list-category/lis
 import { CreateQuestionComponent } from './component/quiz/question/create-question/create-question.component';
 import { ListQuestionComponent } from './component/quiz/question/list-question/list-question.component';
 import {SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider} from 'ng4-social-login';
+
 const config = new AuthServiceConfig([
   {
    id: GoogleLoginProvider.PROVIDER_ID,
@@ -32,6 +33,13 @@ export function provideConfig() {
   return config;
 
 }
+import {NgxPaginationModule} from 'ngx-pagination';
+import { CreateQuizComponent } from './component/quiz/quiz/create-quiz/create-quiz.component';
+import { ListQuizComponent } from './component/quiz/quiz/list-quiz/list-quiz.component';
+import { EditCategoryComponent } from './component/quiz/category/edit-category/edit-category.component';
+import { EditQuestionComponent } from './component/quiz/question/edit-question/edit-question.component';
+import { StartQuizComponent } from './component/quiz/quiz/start-quiz/start-quiz.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +53,12 @@ export function provideConfig() {
     HomeComponent,
     ListCategoryComponent,
     CreateQuestionComponent,
-    ListQuestionComponent
+    ListQuestionComponent,
+    CreateQuizComponent,
+    ListQuizComponent,
+    EditCategoryComponent,
+    EditQuestionComponent,
+    StartQuizComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +67,8 @@ export function provideConfig() {
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [
     {

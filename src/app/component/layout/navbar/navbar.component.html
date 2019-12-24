@@ -9,23 +9,34 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Category
+          Danh Mục
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" [routerLink]="['create-category']">Create Category</a>
+          <a class="dropdown-item" [routerLink]="['create-category']">Thêm Danh Mục</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['list-category']">List Category</a>
+          <a class="dropdown-item" [routerLink]="['list-category']">Danh Sách Danh Mục</a>
         </div>
       </li>
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Question
+          Câu Hỏi
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" [routerLink]="['create-question']">Create Question</a>
+          <a class="dropdown-item" [routerLink]="['create-question']">Thêm Câu Hỏi</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['list-question']">List Question</a>
+          <a class="dropdown-item" [routerLink]="['list-question']">Danh Sách Câu Hỏi</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Quiz
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['create-quiz']">Tạo mới quiz</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['list-quiz']">Danh sách quiz</a>
         </div>
       </li>
 
@@ -35,9 +46,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['register']">Đăng kí</a>
-          <a class="dropdown-item" [routerLink]="['login']">Đăng nhập</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" [routerLink]="['login']">Đăng nhập</a>
         </div>
       </li>
       <li class="nav-item dropdown" *ngIf="userService.userOnline!==''">

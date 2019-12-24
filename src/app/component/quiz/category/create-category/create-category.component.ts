@@ -9,7 +9,6 @@ import {CategoryService} from '../../../../services/category/category.service';
   styleUrls: ['./create-category.component.css']
 })
 export class CreateCategoryComponent implements OnInit {
-  category: Category;
   createCategoryForm: FormGroup;
   isSuccess: boolean;
 
@@ -27,6 +26,7 @@ export class CreateCategoryComponent implements OnInit {
       const category = this.createCategoryForm.value;
       this.categoryService.createCategory(category).subscribe(result => {
         this.isSuccess = true;
+        this.createCategoryForm.reset();
       }, error => {
         this.isSuccess = false;
       });

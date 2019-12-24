@@ -1,0 +1,27 @@
+<div class="container-fluid" style="background-color: orange">
+  <div class="modal-dialog" style="background-color: orange">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>{{questions[index].content}}</h3>
+      </div>
+      <div class="modal-body">
+        <div class="quiz" data-toggle="buttons" *ngFor="let answer of answers">
+          <label *ngIf="answer.question.id == questions[index].id" class="element-animation btn btn-lg btn-warning btn-block">
+            <span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
+            <input type="radio" *ngIf="questions[index].kindOfQuestion.id === 1" name="answer" [value]="answer.id">
+            <input type="checkbox" *ngIf="questions[index].kindOfQuestion.id === 2" name="answer" [value]="answer.id">
+            {{answer.content}}</label>
+        </div>
+      </div>
+      <div class="modal-footer text-muted">
+        <span id="answer"></span>
+      </div>
+      <div class="col">
+        <button *ngIf="!complete" class="btn btn-primary btn-orange-moon" (click)="checkAnswer()">Next</button>
+        <button *ngIf="complete" class="btn btn-primary btn-orange-moon">Complete</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
