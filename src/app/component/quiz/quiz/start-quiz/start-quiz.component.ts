@@ -67,30 +67,19 @@ export class StartQuizComponent implements OnInit {
   }
 
   getAnswerById(id: number) {
-    this.answerService.getAnswerById(id) .subscribe(result => {
+    this.answerService.getAnswerById(id).subscribe(result => {
       this.answerChose = result;
       if (this.answerChose.correct === true) {
         this.numberOfAnswerChoseCorrect++;
+      } else {
+        this.numberOfAnswerChoseCorrect--;
       }
     }, error => {
       console.log('error');
     });
-    // this.answerService.getAnswerById(id).pipe(map(result => {
-    //     this.answerChose = result;
-    //     if (this.answerChose.correct === true) {
-    //       this.numberOfAnswerChoseCorrect++;
-    //     }
-    // }));
   }
 
   checkAnswer() {
-
-    this.check = document.getElementsByName('answer');
-    this.check.forEach(value => {
-      if (value.checked === true) {
-        this.getAnswerById(value.value);
-      }
-    });
     this.getListAnswerCheck(this.questions[this.index].id);
   }
 
@@ -100,8 +89,6 @@ export class StartQuizComponent implements OnInit {
       this.listAnswerOfQuestion.forEach(answer => {
         if (answer.correct === true) {
           this.numberOfCorrectAnswer++;
-        } else {
-          this.numberOfCorrectAnswer--;
         }
       });
       if (this.numberOfAnswerChoseCorrect === this.numberOfCorrectAnswer) {
@@ -110,13 +97,28 @@ export class StartQuizComponent implements OnInit {
       this.numberOfCorrectAnswer = 0;
       this.numberOfAnswerChoseCorrect = 0;
 
+      console.log(this.score);
+
       if (this.index < this.questions.length - 1) {
         this.index += 1;
       } else {
         this.complete = true;
       }
-      console.log(this.score);
     });
+  }
+
+  checkAnswerChose() {
+    this.check.forEach(value => {
+      if (value.checked === true) {
+        this.getAnswerById(value.value);
+      }
+    });
+  }
+
+  choseAnswer() {
+    this.numberOfAnswerChoseCorrect = 0;
+    this.check = document.getElementsByName('answer');
+    this.checkAnswerChose();
   }
 
 }

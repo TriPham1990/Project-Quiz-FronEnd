@@ -8,8 +8,8 @@
         <div class="quiz" data-toggle="buttons" *ngFor="let answer of answers">
           <label *ngIf="answer.question.id == questions[index].id" class="element-animation btn btn-lg btn-warning btn-block">
             <span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
-            <input type="radio" *ngIf="questions[index].kindOfQuestion.id === 1" name="answer" [value]="answer.id">
-            <input type="checkbox" *ngIf="questions[index].kindOfQuestion.id === 2" name="answer" [value]="answer.id">
+            <input type="radio" *ngIf="questions[index].kindOfQuestion.id === 1" name="answer" (click)="choseAnswer()" [value]="answer.id">
+            <input type="checkbox" *ngIf="questions[index].kindOfQuestion.id === 2" name="answer" (click)="choseAnswer()" [value]="answer.id">
             {{answer.content}}</label>
         </div>
       </div>
