@@ -1,26 +1,25 @@
 <div class="container-fluid" style="background-color: orange">
   <div class="modal-dialog" style="background-color: orange">
-    <div class="modal-content" *ngFor="let question of questions |
-       paginate: {itemsPerPage: 1, currentPage:pageActual};index as i" >
+    <div class="modal-content">
       <div class="modal-header">
-        <h3>{{question.content}}</h3>
+        <h3>{{questions[index].content}}</h3>
       </div>
       <div class="modal-body">
         <div class="quiz" data-toggle="buttons" *ngFor="let answer of answers">
-          <label *ngIf="answer.question.id == question.id" class="element-animation btn btn-lg btn-warning btn-block">
+          <label *ngIf="answer.question.id == questions[index].id" class="element-animation btn btn-lg btn-warning btn-block">
             <span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
-            <input type="radio" *ngIf="question.kindOfQuestion.id === 1" (click)="checkAnswerOne(answer.id)" name="answer" [value]="answer.id">
-            <input type="checkbox" *ngIf="question.kindOfQuestion.id === 2" (click)="checkAnswerTwo(answer.id)" name="answer" [value]="answer.id">
+            <input type="radio" *ngIf="questions[index].kindOfQuestion.id === 1" name="answer" [value]="answer.id">
+            <input type="checkbox" *ngIf="questions[index].kindOfQuestion.id === 2" name="answer" [value]="answer.id">
             {{answer.content}}</label>
         </div>
       </div>
       <div class="modal-footer text-muted">
         <span id="answer"></span>
       </div>
-      <div id="pagination" style="margin: 0 auto">
-        <pagination-controls (pageChange)="pageActual = $event"
-                             (click)="checkAnswer()"
-        ></pagination-controls>
+      <div class="col">
+        <button *ngIf="!complete" class="btn btn-primary btn-orange-moon" (click)="checkAnswer()">Next</button>
+        <button *ngIf="complete" class="btn btn-primary btn-orange-moon">Complete</button>
+
       </div>
     </div>
   </div>

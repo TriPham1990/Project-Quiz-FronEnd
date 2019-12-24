@@ -24,7 +24,6 @@ export class CreateQuizComponent implements OnInit {
   listIdCategoriesCurrent: number[] = [];
   checkboxes: any;
 
-  pageActual = 1;
 
   constructor(private fb: FormBuilder, private quizService: QuizService, private categoryService: CategoryService,
               private questionService: QuestionService) {
