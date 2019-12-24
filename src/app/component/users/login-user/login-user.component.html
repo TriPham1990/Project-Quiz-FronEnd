@@ -1,4 +1,4 @@
-<div id="logreg-forms" style="padding-top: 30px">
+<div class="col-md-6 offset-md-3" id="logreg-forms" style="padding-top: 30px">
   <br>
   <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Đăng nhập</h1>
   <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login()">
@@ -20,7 +20,7 @@
 
     </div>
     <div class="form-group">
-      <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Đăng nhập</button>
+      <button class="btn btn-outline-info" type="submit"><i class="fas fa-sign-in-alt"></i> Đăng nhập</button>
       <div class="message" *ngIf="isShow">
         <div class="alert alert-success" role="alert" *ngIf="isSuccess">
           Đăng nhập thành công!
